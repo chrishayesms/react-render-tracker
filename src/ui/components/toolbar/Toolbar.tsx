@@ -11,6 +11,7 @@ import {
   Download,
   Pause,
   Play,
+  SubtreeToggle,
 } from "../common/icons";
 import { useReactRenderers } from "../../utils/react-renderers";
 
@@ -22,6 +23,8 @@ interface ToolbarProps {
   showUnmounted: boolean;
   onShowTimings: BooleanToggle;
   showTimings: boolean;
+  onFocusOnUnmounted: BooleanToggle;
+  focusOnUnmounted: boolean;
 }
 
 const Toolbar = ({
@@ -31,6 +34,8 @@ const Toolbar = ({
   showUnmounted,
   onShowTimings,
   showTimings,
+  onFocusOnUnmounted,
+  focusOnUnmounted,
 }: ToolbarProps) => {
   const { selected: selectedReactInstance } = useReactRenderers();
   const { clearAllEvents, allEvents, paused, setPaused } = useEventsContext();
@@ -108,6 +113,16 @@ const Toolbar = ({
             showUnmounted
               ? "Hide unmounted components"
               : "Show unmounted components"
+          }
+        />
+        <ButtonToggle
+          icon={SubtreeToggle}
+          isActive={focusOnUnmounted}
+          onChange={onFocusOnUnmounted}
+          tooltip={
+            focusOnUnmounted
+              ? "Show all subtrees"
+              : "Show only subtrees with unmounted components"
           }
         />
         <ButtonToggle

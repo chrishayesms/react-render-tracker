@@ -41,3 +41,8 @@
   color: #aaa;
   user-select: none;
 }
+
+/* Hide leaves which have no unmounted components anywhere below them */
+.fiber-tree.unmounts-only .tree-leaf:not(:has(.unmounted)) {
+  display: none;
+}

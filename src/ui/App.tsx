@@ -61,6 +61,7 @@ function Layout() {
   const [groupByParent, setGroupByParent] = React.useState(false);
   const [showUnmounted, setShowUnmounted] = React.useState(true);
   const [showTimings, setShowTimings] = React.useState(false);
+  const [focusOnUnmounted, setFocusOnUnmounted] = React.useState(false);
   const { selectedId } = useSelectedId();
   const { pinnedId } = usePinnedId();
 
@@ -74,6 +75,8 @@ function Layout() {
           showUnmounted={showUnmounted}
           onShowTimings={setShowTimings}
           showTimings={showTimings}
+          focusOnUnmounted={focusOnUnmounted}
+          onFocusOnUnmounted={setFocusOnUnmounted}
         />
 
         <WaitingForReady />
@@ -92,6 +95,7 @@ function Layout() {
           groupByParent={groupByParent}
           showUnmounted={showUnmounted}
           showTimings={showTimings}
+          focusOnUnmounted={focusOnUnmounted}
         />
       </FindMatchContextProvider>
 

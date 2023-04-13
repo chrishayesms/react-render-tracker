@@ -9,11 +9,13 @@ const Tree = ({
   groupByParent = false,
   showUnmounted = true,
   showTimings = false,
+  focusOnUnmounted = false,
 }: {
   rootId: number;
   groupByParent?: boolean;
   showUnmounted?: boolean;
   showTimings?: boolean;
+  focusOnUnmounted?: boolean;
 }) => {
   const children = useFiberChildren(rootId, groupByParent, showUnmounted);
   const viewSettings = React.useMemo<TreeViewSettings>(() => {
@@ -32,7 +34,13 @@ const Tree = ({
   }, [groupByParent, showUnmounted, showTimings]);
 
   return (
-    <div className={"fiber-tree" + (showTimings ? " timings" : "")}>
+    <div
+      className={
+        "fiber-tree" +
+        (showTimings ? " timings" : "") +
+        (focusOnUnmounted ? " unmounts-only" : "")
+      }
+    >
       <div className="fiber-tree__scroll-area">
         <div className="fiber-tree__content">
           <TreeViewSettingsContext.Provider value={viewSettings}>
